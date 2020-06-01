@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "front-mepangolin": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "front-mepangolin"
+    }
+  },
+  "defaultProject": "front-mepangolin",
+  "cli": {
+    "analytics": "81f5db68-2f24-4921-ae61-a0966c5ce0c6"
+  }
 }

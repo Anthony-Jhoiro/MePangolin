@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-image: url("assets/background.svg"), linear-gradient(#fd1d1d, #fcb045) ;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(255, 255, 255, .8);
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  font-size: 1.4rem;
+  max-width: 400px;
+  h3 {
+    font-size: 2.5rem;
+    margin: 0 0 2rem 0;
+    text-align: center;
+  }
+  div {
+    position: relative;
+    margin: 20px 0;
+    input {
+      font-size: 1.4rem;
+      width: 100%;
+      outline: none;
+      border: none;
+      background: none;
+      border-bottom: 2px solid #222;
+      &:focus, &:valid {
+        &+label {
+          top: -15px;
+          font-size: 15px;
+          color: #ff6200
+        }
+        border-bottom: 2px solid #ff6200;
+
+      }
+    }
+    label {
+      transition: .5s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #222;
+    }
+  }
+
+  .link-container {
+    text-align: center;
+    width: 100%;
+    .register-link {
+      font-size: .8rem;
+      color: #ff6200;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgba(#fcb045,0);
+    border-radius: 5px;
+    transition: .3s;
+    color: #222;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba(#fcb045,1);
+      color: #fff;
+    }
+  }
+}

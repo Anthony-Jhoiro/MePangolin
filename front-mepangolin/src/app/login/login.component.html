@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="form">
+  <form [formGroup]="loginForm">
+    <h3>Connexion</h3>
+    <div>
+        <input id="login" type="text" formControlName="login" required>
+        <label for="login">Identifiant</label>
+    </div>
+    <div>
+      <input id="password" type="password" formControlName="password" required>
+      <label for="password">Mot de passe</label>
+    </div>
+    <div class="link-container">
+      <a [routerLink]="['/register']" class="register-link">Vous n'avez pas de compte ? Rejoignez notre comunauté de pangolins !</a>
+    </div>
+    <button *ngIf="loginForm.valid" (click)="submitLoginForm()">Envoyer</button>
+  </form>
+</div>

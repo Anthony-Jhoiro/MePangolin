@@ -28,7 +28,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     }), map((res: any) => {
       if (res.status === 200 || res.status === 201) {
-        localStorage.setItem('access_token', res.headers.get('authorization'));
+        const token = res.headers.get('_token');
+        if (token) {
+          localStorage.setItem('access_token', token);
+        }
       }
       return res;
     }));

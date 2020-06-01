@@ -8,7 +8,8 @@ import loadRoutes from "./app/routes.js";
 const app = express();
 
 app.use(cors({
-    origin: FRONT_URL
+    origin: FRONT_URL,
+    exposedHeaders: ['_token']
 }));
 
 app.use(bodyParser.json());

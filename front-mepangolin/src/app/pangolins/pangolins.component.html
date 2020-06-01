@@ -1,1 +1,3 @@
-<p>pangolins works!</p>
+<div class="pangolins">
+  <app-pangolin-detail *ngFor="let pangolin of pangolins | async" [pangolin]="pangolin" (addFriend)="addFriend($event)"></app-pangolin-detail>
+</div>

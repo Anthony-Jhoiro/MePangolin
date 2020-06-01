@@ -23,13 +23,13 @@ class FriendController {
         Pangolin.findOne({_id: req.userId})
             .then(currentPangolin => {
                 // verify that the new friend isn't already a friend
-                if (currentPangolin.friends.indexOf(res.body.id) !== -1) {
+                if (currentPangolin.friends.indexOf(req.body.id) !== -1) {
                     res.status(401).json("Vous êtes déjà ami !")
                     return ;
                 }
 
                 // verify that the other pangolin exists
-                Pangolin.findOne({_id: res.body.id})
+                Pangolin.findOne({_id: req.body.id})
                     .then(friend => {
                         if (!friend) {
                             res.status(403).json({"error": "Ce pangolin semble ne pas exister"});

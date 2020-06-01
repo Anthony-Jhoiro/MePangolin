@@ -4,7 +4,7 @@ class PangolinController {
 
     getPangolins (req, res) {
         // Get all pangolins except the current user
-        Pangolin.find({_id: {$ne: req.userId}})
+        Pangolin.find({_id: {$ne: req.userId}}, {password: 0})
             .then(data => {
                 res.json(data);
             });

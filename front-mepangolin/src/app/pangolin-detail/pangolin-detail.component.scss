@@ -1,0 +1,39 @@
+.pangolin-container {
+  background-color: rgba(255, 255, 255, .8);
+  width: 360px;
+  height: 450px;
+  padding: 20px;
+  margin: 20px;
+
+  .name {
+    text-align: center;
+  }
+
+  .img-container {
+    margin: auto;
+    width: 150px;
+    object-fit: contain;
+
+    img {
+      width: inherit;
+    }
+  }
+  ul {
+    li {
+      font-size: 1.3rem;
+      list-style: none;
+    }
+  }
+
+  .add-btn {
+    display: block;
+    margin: auto;
+    font-size: 1.5em;
+    background-color: #4f9db0;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

@@ -32,7 +32,8 @@ class AuthenticationController {
                     if (err) res.status(500).send({error: err});
 
                     // Create token (valid for 1h)
-                    const token = sign({id: pangolin._id}, JWT_SECRET, {expiresIn: 3600})
+                    const token = jwt.sign({id: pangolin._id}, JWT_SECRET, {expiresIn: 3600});
+                    res.set('_token', token);
 
                     res.json({success: "Votre compte a bien été créé, ami Pangolin"});
 
@@ -60,7 +61,7 @@ class AuthenticationController {
                 }
 
                 const token = jwt.sign({id: pangolin._id}, JWT_SECRET, {expiresIn: 3600});
-                res.set('Authorization', token);
+                res.set('_token', token);
                 res.json({"success": "Vous êtes connecté !"});
 
             });

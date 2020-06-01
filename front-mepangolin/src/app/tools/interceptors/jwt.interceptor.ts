@@ -18,6 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     // if the token exists, add it to the header
     if (currentUser) {
+      console.log(currentUser);
       request = request.clone({
         setHeaders: {
           "x-access-token": currentUser

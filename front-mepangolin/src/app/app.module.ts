@@ -9,6 +9,9 @@ import { PangolinsComponent } from './pangolins/pangolins.component';
 import { PangolinDetailComponent } from './pangolin-detail/pangolin-detail.component';
 import { MypageComponent } from './mypage/mypage.component';
 import { RegisterComponent } from './register/register.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ErrorInterceptor} from "./tools/interceptors/error.interceptor";
+import {JwtInterceptor} from "./tools/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

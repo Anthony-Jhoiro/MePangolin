@@ -1,1 +1,33 @@
-<p>mypage works!</p>
+<a [routerLink]="['/pangolins']" class="return-btn"><fa-icon [icon]="returnIcon"></fa-icon></a>
+<div id="my-page" *ngIf="pangolin">
+    <div class="headline">
+      <h1>Mon profil !</h1>
+      <h2>{{pangolin.name}}</h2>
+    </div>
+
+    <div class="input-container">
+      <label for="age">Age : </label>
+      <input id="age" type="text" [(ngModel)]="pangolin.age">
+    </div>
+    <div class="input-container">
+      <label for="family">Famille : </label>
+      <input id="family" type="text" [(ngModel)]="pangolin.family">
+    </div>
+    <div class="input-container">
+      <label for="race">Race : </label>
+      <input id="race" type="text" [(ngModel)]="pangolin.race">
+    </div>
+  <div class="food-selector">
+    <h4>Nourriture :</h4>
+    <p>Entrez votre nourriture (séparré par des virgules)</p>
+    <tag-input
+      [(ngModel)]="foodModel"
+      [placeholder]="'Entrez votre nourriture'"
+      [separatorKeys]="[',']"
+    ></tag-input>
+
+  </div>
+  <div class="btn-container">
+    <button class="valid-btn">Valider</button>
+  </div>
+</div>

@@ -17,7 +17,7 @@ $nav-bar-height: 60px;
     color: #fff;
   }
 
-  button {
+  .nav-btn {
     font-size: 1.4rem;
     background: none;
     border: none;
@@ -38,6 +38,12 @@ $nav-bar-height: 60px;
     border-bottom: 2px solid #fff;
     padding: 0;
     height: $nav-bar-height - 10px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    fa-icon {
+      margin: 0 15px 0 5px;
+
+    }
     input {
       border: none;
       background: none;
@@ -47,7 +53,7 @@ $nav-bar-height: 60px;
   }
   .right-side {
     float: right;
-    button:hover {
+    .nav-btn:hover {
         background-color: #ddd;
         color: #222;
       }

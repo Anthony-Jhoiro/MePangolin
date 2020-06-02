@@ -3,15 +3,20 @@
     <h1>Me Pangolin</h1>
   </div>
   <div class="left-side">
-    <button [ngClass]="{active: onlyFriends}" (click)="toggleOnlyFriends()">
+    <button [ngClass]="{active: onlyFriends, 'nav-btn': true}" (click)="toggleOnlyFriends()">
       Que mes amis
     </button>
     <div class="search-bar">
+
+      <fa-icon [icon]="searchIcon"></fa-icon>
       <input id="search-bar" type="text" placeholder="Rechercher un copain" [(ngModel)]="searchItem" (ngModelChange)="onSearch()">
     </div>
   </div>
   <div class="right-side">
-    <button>
+    <a class="nav-btn" [routerLink]="['/me']">
+      <fa-icon [icon]="userIcon"></fa-icon>
+    </a>
+    <button class="nav-btn" (click)="logout()">
       Déconnexion
     </button>
   </div>

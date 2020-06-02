@@ -15,7 +15,7 @@ const loadRoutes = app => {
     // Pangolin
     // app.use('/pangolins?', );
     app.get('/pangolins', AuthenticationMiddleware, pangolinController.getPangolins);
-    app.get('/pangolin/:id', AuthenticationMiddleware, pangolinController.getPangolinById);
+    app.get('/pangolin/profile', AuthenticationMiddleware, pangolinController.getProfile);
     app.patch('/pangolin', AuthenticationMiddleware, pangolinController.updatePangolin);
 
     // Friends

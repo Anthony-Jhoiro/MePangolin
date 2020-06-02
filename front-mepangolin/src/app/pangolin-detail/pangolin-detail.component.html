@@ -7,6 +7,7 @@
     <li>Age : {{ pangolin.age }} ans</li>
     <li>Famille : {{ pangolin.family }}</li>
     <li>Race : {{ pangolin.race }}</li>
+    <li>Nourriture : {{ pangolin.food.join(", ") }}</li>
   </ul>
   <ng-template [ngIf]="!pangolin.friend" [ngIfElse]="removeButton">
     <button class="add-btn" (click)="friend()">Ajouter à mes amis</button>

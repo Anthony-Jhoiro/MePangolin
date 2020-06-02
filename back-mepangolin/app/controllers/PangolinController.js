@@ -37,7 +37,13 @@ class PangolinController {
     }
 
     getPangolinById(req, res) {
-        Pangolin.find({_id: req.params.id})
+        Pangolin.findOne({_id: req.params.id}, {password: 0})
+            .then(d => res.json(d));
+        return res;
+    }
+
+    getProfile(req, res) {
+        Pangolin.findOne({_id: req.userId}, {password: 0})
             .then(d => res.json(d));
         return res;
     }

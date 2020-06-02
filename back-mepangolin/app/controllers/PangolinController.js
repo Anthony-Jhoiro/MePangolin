@@ -3,7 +3,7 @@ import Pangolin from "../schemas/Pangolin.js";
 class PangolinController {
 
     /**
-     * Get all pangolins except the current one depending of the filters
+     * Get all pangolins, except the current one, depending of the filters
      * @param req
      * @param res
      * @returns {*}
@@ -36,18 +36,24 @@ class PangolinController {
         return res;
     }
 
-    getPangolinById(req, res) {
-        Pangolin.findOne({_id: req.params.id}, {password: 0})
-            .then(d => res.json(d));
-        return res;
-    }
-
+    /**
+     * Get the current pangolin profile
+     * @param req
+     * @param res
+     * @return {*}
+     */
     getProfile(req, res) {
         Pangolin.findOne({_id: req.userId}, {password: 0})
             .then(d => res.json(d));
         return res;
     }
 
+    /**
+     * Update the information of a pangolin
+     * @param req
+     * @param res
+     * @return {any}
+     */
     updatePangolin (req, res) {
         // Check if the current pangolin is the one that is updated
         if (req.body.id !== req.userId) {

@@ -10,17 +10,14 @@ const loadRoutes = app => {
     // Authentication
     app.post('/auth/register', authenticationController.register);
     app.post('/auth/login', authenticationController.login);
-    app.post('/auth/logout', authenticationController.logout);
 
     // Pangolin
-    // app.use('/pangolins?', );
     app.get('/pangolins', AuthenticationMiddleware, pangolinController.getPangolins);
     app.get('/pangolin/profile', AuthenticationMiddleware, pangolinController.getProfile);
     app.patch('/pangolin', AuthenticationMiddleware, pangolinController.updatePangolin);
 
     // Friends
     app.use('/friend', AuthenticationMiddleware);
-    app.get('/friend', friendController.getFriends);
     app.post('/friend', friendController.addFriend);
     app.delete('/friend/:id', friendController.removeFriend);
 

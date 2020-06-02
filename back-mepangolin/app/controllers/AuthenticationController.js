@@ -1,12 +1,20 @@
 import Pangolin from "../schemas/Pangolin.js";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken'
-import {JWT_SECRET} from "../../environment.js";
+import addJwtToken from "../tools/jwtAdder.js";
 
 class AuthenticationController {
 
+    /**
+     * Register a new pangolin friend
+     * @param req
+     * @param res
+     * @return {*}
+     */
     register (req, res) {
-        // TODO : Check request valid
+        // Check that the request is valid
+        if (!(req.body.name && req.body.password && req.body.age && req.body.family && req.body.race && req.body.food)) {
+            return res.status(400).json({"error": "Invalid Request"});
+        }
 
         // Check Unique Name
         Pangolin.findOne({name: req.body.name})
@@ -32,8 +40,7 @@ class AuthenticationController {
                     if (err) res.status(500).send({error: err});
 
                     // Create token (valid for 1h)
-                    const token = jwt.sign({id: pangolin._id}, JWT_SECRET, {expiresIn: 3600});
-                    res.set('_token', token);
+                    addJwtToken(res, {id: pangolin._id});
 
                     res.json({success: "Votre compte a bien été créé, ami Pangolin"});
 
@@ -42,8 +49,17 @@ class AuthenticationController {
         return res;
     }
 
+    /**
+     * Try to log a pangolin
+     * @param req
+     * @param res
+     * @return {*}
+     */
     login (req, res) {
-        // TODO : Check request valid
+        // Check that the request is valid
+        if (!(req.body.login && req.body.password)) {
+            return res.status(400).json({"error": "Invalid Request"});
+        }
 
         // Check Unique Name
         Pangolin.findOne({name: req.body.login})
@@ -60,20 +76,11 @@ class AuthenticationController {
                     return;
                 }
 
-                const token = jwt.sign({id: pangolin._id}, JWT_SECRET, {expiresIn: 3600});
-                res.set('_token', token);
-                res.json({"success": "Vous êtes connecté !"});
+                addJwtToken(res, {id: pangolin._id});
 
+                res.json({"success": "Vous êtes connecté !"});
             });
         return res;
-    }
-
-    logout (req, res) {
-        console.warn("To Implement");
-    }
-
-    addToken(response, data) {
-
     }
 
 }

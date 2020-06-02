@@ -1,18 +1,12 @@
 import Pangolin from "../schemas/Pangolin.js";
 class FriendController {
 
-    getFriends (req, res) {
-        // Get current pangolin
-        Pangolin.findOne({_id: req.userId})
-            .then(currentPangolin => {
-                Pangolin.find({_id: {$in: currentPangolin.friends}})
-                    .then(pangolins => {
-                        res.json(pangolins);
-                    });
-            });
-        return res;
-    }
-
+    /**
+     * Add a pangolin to the current pangolin friends
+     * @param req
+     * @param res
+     * @return {*}
+     */
     addFriend (req, res) {
         // Verify that the new friend is not the current pangolin
         if (req.userId === req.body.id) {
@@ -49,6 +43,12 @@ class FriendController {
         return res;
     }
 
+    /**
+     * Remove a pangolin form the current pangolin friend list
+     * @param req
+     * @param res
+     * @return {*}
+     */
     removeFriend (req, res) {
         Pangolin.findOne({_id: req.userId})
             .then(currentPangolin => {

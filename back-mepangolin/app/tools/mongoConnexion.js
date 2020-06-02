@@ -1,9 +1,6 @@
 import mongoose from 'mongoose';
-/**
- * TODO : Switch to environment variables
- */
-const DATABASE_URL = "mongodb://localhost/";
-const DATABASE_NAME = "mepangolin";
+import {DATABASE_NAME, DATABASE_URL} from "../../environment.js";
+
 
 // Connection to mongodb database
 mongoose.connect(DATABASE_URL + DATABASE_NAME, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });

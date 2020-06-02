@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
     // get the access_token' from the localstorage
     let currentUser = localStorage.getItem('access_token');
 
-    // if the token exists, add it to the header
+    // if the token exists, add it to the request x-access-token header
     if (currentUser) {
       console.log(currentUser);
       request = request.clone({

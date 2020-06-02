@@ -12,13 +12,16 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {}
 
   /**
-   * Intercept response and update jwt token
-   * @param req la requête interceptée
-   * @param next la requête récupérée ensuite
+   * Intercept response, update jwt token and handle authorisation problems
+   * @param req intercepted request
+   * @param next the request handler
    */
   intercept(req: HttpRequest<any>, next:HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError((err: HttpErrorResponse) => {
+
+      // If there is a 401 error, logout the user
       if (err.status === 401) {
+        localStorage.removeItem('access_token');
         this.router.navigate(['/login']);
       }
 
@@ -26,6 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       return throwError(error);
 
     }), map((res: any) => {
+      // If the request succeed, update the current jwt token with the one from the _token header
       if (res.status === 200 || res.status === 201) {
         const token = res.headers.get('_token');
         if (token) {

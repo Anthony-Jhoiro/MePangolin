@@ -27,4 +27,12 @@ export class PangolinsService {
   getProfile(): Observable<Pangolin> {
     return this.http.get<Pangolin>(encodeURI(environment.API_ENDPOINT + '/pangolin/profile'))
   }
+
+  /**
+   * Call the API to update the pangolin
+   * @param pangolin
+   */
+  updatePangolin(pangolin: Pangolin) {
+    return this.http.patch<Pangolin>(environment.API_ENDPOINT + '/pangolin', pangolin);
+  }
 }

@@ -56,8 +56,8 @@ class PangolinController {
      */
     updatePangolin (req, res) {
         // Check if the current pangolin is the one that is updated
-        if (req.body.id !== req.userId) {
-            return res.status(403).json("Vous n'êtes pas authorisé à modifier votre ami pangolin");
+        if (req.body._id !== req.userId) {
+            return res.status(403).json({"error": "Vous n'êtes pas authorisé à modifier votre ami pangolin"});
         }
 
         // Get the pangolin to update

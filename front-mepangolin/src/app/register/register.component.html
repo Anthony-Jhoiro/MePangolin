@@ -17,6 +17,15 @@
       <input id="race" type="text" formControlName="race" required>
       <label for="race">Race</label>
     </div>
+    <div class="food-selector">
+      <h4>Nourriture :</h4>
+      <p>Entrez votre nourriture (séparré par des virgules)</p>
+      <tag-input
+        formControlName="food"
+        [placeholder]="'Entrez votre nourriture'"
+        [separatorKeys]="[',']"
+      ></tag-input>
+    </div>
 
     <div style="margin-top: 30px">
       <input id="password" type="password" formControlName="password" required>
@@ -29,6 +38,6 @@
     <div class="link-container">
       <a [routerLink]="['/login']" class="register-link">Vous êtes déjà venu ? Connectez vous ami pangolin !</a>
     </div>
-    <button *ngIf="registerForm.valid" (click)="submitRegisterForm()">Envoyer</button>
+    <button *ngIf="registerForm.valid && registerForm.value.password === registerForm.value.password_confirm" (click)="submitRegisterForm()">Envoyer</button>
   </form>
 </div>

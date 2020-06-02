@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PangolinsService} from "../services/pangolins.service";
 import {Pangolin} from "../models/Pangolin";
 import {faUndoAlt} from "@fortawesome/free-solid-svg-icons";
@@ -13,11 +13,26 @@ export class MypageComponent implements OnInit {
   returnIcon = faUndoAlt;
   foodModel = [];
 
-  constructor(private pangolinService: PangolinsService) { }
+  constructor(private pangolinService: PangolinsService) {
+  }
 
   ngOnInit(): void {
     this.pangolinService.getProfile()
-      .subscribe(pangolin => this.pangolin = pangolin);
+      .subscribe(pangolin => {
+        this.pangolin = pangolin;
+        this.foodModel = pangolin.food.map(e => {
+          return {
+            display: e,
+            value: e
+          };
+        })
+      });
+  }
+
+  onSubmit () {
+    this.pangolin.food =this.foodModel.map(e=>e.value);
+    this.pangolinService.updatePangolin(this.pangolin)
+      .subscribe();
   }
 
 }

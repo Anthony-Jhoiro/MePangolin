@@ -26,11 +26,17 @@ export class RegisterComponent implements OnInit {
       race: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       password_confirm: new FormControl('', Validators.required),
+      food: new FormControl([])
     });
   }
 
   submitRegisterForm() {
-
+    if (this.registerForm.valid) {
+      let data = this.registerForm.value;
+      data.food = data.food.map(f=>f.value);
+      this.authenticationService.register(data)
+        .subscribe(() => this.router.navigate(['/pangolins']));
+    }
   }
 
 }

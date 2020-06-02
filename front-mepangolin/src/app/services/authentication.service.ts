@@ -23,6 +23,10 @@ export class AuthenticationService {
     return this.http.post(environment.API_ENDPOINT + '/auth/login', {login, password});
   }
 
+  register(pangolin) {
+    return this.http.post(environment.API_ENDPOINT + '/auth/register', pangolin);
+  }
+
   /**
    * LogOut the current pangolin by removing his access token
    * from the localstorage and redirect him to the login page

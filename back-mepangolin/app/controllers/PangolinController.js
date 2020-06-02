@@ -2,11 +2,36 @@ import Pangolin from "../schemas/Pangolin.js";
 
 class PangolinController {
 
+    /**
+     * Get all pangolins except the current one depending of the filters
+     * @param req
+     * @param res
+     * @returns {*}
+     */
     getPangolins (req, res) {
-        // Get all pangolins except the current user
-        Pangolin.find({_id: {$ne: req.userId}}, {password: 0})
-            .then(data => {
-                res.json(data);
+        // Handle filters
+        const searchItem = req.query.searchItem;
+        const onlyFriends = req.query.onlyFriends;
+
+        // Get current pangolin
+        Pangolin.findOne({_id: req.userId})
+            .then(currentPangolin => {
+                let filters = {
+                    $and: [
+                        {
+                            // Do not return the current pangolin
+                            _id: {$ne: req.userId}
+                        },
+                        (onlyFriends === '1')? {_id: {$in: currentPangolin.friends}}:{}
+                    ],
+                name: {$regex: searchItem}
+                };
+                Pangolin.find(filters, {password: 0}).lean()
+                    .then(pangolins => {
+                        // Add the friend attribute to know if the pangolin is a friend with the current pangolin
+                        pangolins.forEach(pangolin => pangolin.friend = currentPangolin.friends.indexOf(pangolin._id) !== -1);
+                        res.json(pangolins);
+                    });
             });
         return res;
     }

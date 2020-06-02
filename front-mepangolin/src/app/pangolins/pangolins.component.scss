@@ -1,4 +1,61 @@
+$nav-bar-height: 60px;
+.nav-bar {
+  height: $nav-bar-height;
+  line-height: $nav-bar-height;
+  background-color: rgba(22,22,22,.8);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  div {
+    display: inline-block;
+  }
+  .brand {
+    h1 {
+      margin: 0;
+    }
+    margin: 0 20px;
+    color: #fff;
+  }
+
+  button {
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    color: #ddd;
+    transition: .3s;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 0 20px;
+
+    &.active {
+      background-color: #4f9db0;
+    }
+
+  }
+
+  .search-bar {
+    border-bottom: 2px solid #fff;
+    padding: 0;
+    height: $nav-bar-height - 10px;
+    input {
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+  }
+  .right-side {
+    float: right;
+    button:hover {
+        background-color: #ddd;
+        color: #222;
+      }
+  }
+}
+
 .pangolins {
+  margin-top: $nav-bar-height;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

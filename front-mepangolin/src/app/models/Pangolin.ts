@@ -5,4 +5,5 @@ export class Pangolin {
   food: Array<String>;
   family: String;
   race: String;
+  friend: boolean;
 }

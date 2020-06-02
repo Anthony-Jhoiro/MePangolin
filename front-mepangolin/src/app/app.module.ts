@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FriendsComponent } from './friends/friends.component';
 import { PangolinsComponent } from './pangolins/pangolins.component';
 import { PangolinDetailComponent } from './pangolin-detail/pangolin-detail.component';
 import { MypageComponent } from './mypage/mypage.component';
@@ -12,13 +11,12 @@ import { RegisterComponent } from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ErrorInterceptor} from "./tools/interceptors/error.interceptor";
 import {JwtInterceptor} from "./tools/interceptors/jwt.interceptor";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FriendsComponent,
     PangolinsComponent,
     PangolinDetailComponent,
     MypageComponent,
@@ -28,6 +26,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [

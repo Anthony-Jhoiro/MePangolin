@@ -9,6 +9,7 @@ import {Pangolin} from "../models/Pangolin";
 export class PangolinDetailComponent implements OnInit {
   @Input() pangolin: Pangolin;
   @Output() addFriend = new EventEmitter<String>();
+  @Output() removeFriend = new EventEmitter<String>();
 
   constructor() { }
 
@@ -17,6 +18,12 @@ export class PangolinDetailComponent implements OnInit {
 
   friend() {
     this.addFriend.emit(this.pangolin._id);
+    this.pangolin.friend = true;
+  }
+
+  noFriend() {
+    this.removeFriend.emit(this.pangolin._id);
+    this.pangolin.friend = false;
   }
 
 }

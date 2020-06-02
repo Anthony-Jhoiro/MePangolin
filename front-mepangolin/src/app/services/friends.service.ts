@@ -12,4 +12,12 @@ export class FriendsService {
   addFriend(pangolinId) {
     return this.http.post(environment.API_ENDPOINT + '/friend', { id: pangolinId });
   }
+
+  removeFriend(pangolinId) {
+    return this.http.delete(environment.API_ENDPOINT + '/friend/'+pangolinId);
+  }
+
+  getFriends() {
+    return this.http.get(environment.API_ENDPOINT + '/friend');
+  }
 }

@@ -8,5 +8,12 @@
     <li>Famille : {{ pangolin.family }}</li>
     <li>Race : {{ pangolin.race }}</li>
   </ul>
-  <button class="add-btn" (click)="friend()">Ajouter à mes amis</button>
+  <ng-template [ngIf]="!pangolin.friend" [ngIfElse]="removeButton">
+    <button class="add-btn" (click)="friend()">Ajouter à mes amis</button>
+  </ng-template>
+
+  <ng-template #removeButton>
+    <button class="remove-btn" (click)="noFriend()">Retirer de mes amis</button>
+  </ng-template>
+
 </div>

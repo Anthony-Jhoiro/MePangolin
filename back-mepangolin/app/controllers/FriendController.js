@@ -53,13 +53,23 @@ class FriendController {
         Pangolin.findOne({_id: req.userId})
             .then(currentPangolin => {
                 // verify that the new friend isn't already a friend
-                const oldFriendIndex = currentPangolin.friends.indexOf(res.body.id);
+                const oldFriendIndex = currentPangolin.friends.indexOf(req.params.id);
                 if (oldFriendIndex === -1) {
-                    res.status(401).json("Ce pangolin n'était pas votre ami !")
+                    res.status(401).json("Ce pangolin n'était pas votre ami !");
                     return ;
                 }
                 currentPangolin.friends.splice(oldFriendIndex, 1);
+                console.log(currentPangolin);
+                currentPangolin.save((err, pangolin) => {
+                    if (err) {
+                        res.status(500).json({error: "Il semblerait que votre amitié soit plus forte que le code"});
+                        return;
+                    }
+                    res.json({"success": "Vous n'êtes plus ami avec ce pangolin. Ne vous en faites pas, vous en trouverez d'autres !"});
+                });
+
             });
+        return res;
     }
 
 }

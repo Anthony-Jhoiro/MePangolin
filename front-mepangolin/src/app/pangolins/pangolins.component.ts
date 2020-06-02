@@ -10,7 +10,11 @@ import {FriendsService} from "../services/friends.service";
   styleUrls: ['./pangolins.component.scss']
 })
 export class PangolinsComponent implements OnInit {
-  pangolins: Observable<Pangolin[]>;
+  pangolins: Pangolin[] = [];
+  onlyFriends = false;
+  searchItem = "";
+  timeOutBeforeSearch: any;
+
 
   constructor(
     private pangolinsService: PangolinsService,
@@ -18,12 +22,40 @@ export class PangolinsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pangolins = this.pangolinsService.getPangolins();
+    this.searchPangolins();
+  }
+
+  searchPangolins() {
+    this.pangolinsService.getPangolins(this.onlyFriends, this.searchItem)
+      .subscribe(pangolins => this.pangolins = pangolins);
+  }
+
+  /**
+   * Called from the template when the button "Que mes amis" is clicked
+   * After a 1 second timeout send the request.
+   */
+  onSearch() {
+    // Clear previous time out
+    clearTimeout(this.timeOutBeforeSearch)
+    // Wait a second before sending the request
+    this.timeOutBeforeSearch = setTimeout(() => {
+      this.searchPangolins();
+    }, 1000);
   }
 
   addFriend(pangolinId) {
     this.friendsService.addFriend(pangolinId)
-      .subscribe();
+      .subscribe(() => this.searchPangolins());
+  }
+
+  removeFriend(pangolinId) {
+    this.friendsService.removeFriend(pangolinId)
+      .subscribe(() => this.searchPangolins());
+  }
+
+  toggleOnlyFriends() {
+    this.onlyFriends = !this.onlyFriends;
+    this.searchPangolins();
   }
 
 }

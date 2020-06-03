@@ -1,0 +1,3 @@
+<div class="message-bubble" [ngStyle]="{'opacity': opacity}" *ngIf="opacity > 0">
+  <p class="message" [ngClass]="{'success': state === 'SUCCESS', 'error': state === 'ERROR'}">{{message}}</p>
+</div>

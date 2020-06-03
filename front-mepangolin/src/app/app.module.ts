@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {TagInputModule} from "ngx-chips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { NotificationBubbleComponent } from './tools/notification-bubble/notification-bubble.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     PangolinsComponent,
     PangolinDetailComponent,
     MypageComponent,
-    RegisterComponent
+    RegisterComponent,
+    NotificationBubbleComponent
   ],
   imports: [
     BrowserAnimationsModule,

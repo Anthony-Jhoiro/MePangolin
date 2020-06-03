@@ -29,7 +29,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
       const error = err.statusText || err.error.message;
 
-      this.notificationService.showNotification(error, NotificationState.ERROR);
+      if (err.error.error) {
+        this.notificationService.showNotification(err.error.error, NotificationState.ERROR);
+      }
+
       return throwError(error);
 
     }), map((res: any) => {

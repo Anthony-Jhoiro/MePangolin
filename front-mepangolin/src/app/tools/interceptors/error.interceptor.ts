@@ -3,7 +3,7 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Router} from "@angular/router";
-import {NotificationService} from "../notification-service.service";
+import {NotificationService} from "../notification.service";
 import {NotificationState} from "../notification-bubble/notification-bubble.component";
 
 @Injectable()

@@ -9,10 +9,19 @@ export class NotificationService {
 
   constructor() { }
 
+  /**
+   * Set the notification component reference.
+   * @param component
+   */
   setNotificationComponent(component) {
     this.notificationComponent = component;
   }
 
+  /**
+   * Show a notification in the notification-bubble-component
+   * @param message message to display
+   * @param state state of the message
+   */
   showNotification(message: string, state: NotificationState) {
     this.notificationComponent.showNotification(message, state);
   }

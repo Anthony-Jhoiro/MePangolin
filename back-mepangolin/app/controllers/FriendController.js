@@ -18,7 +18,7 @@ class FriendController {
             .then(currentPangolin => {
                 // verify that the new friend isn't already a friend
                 if (currentPangolin.friends.indexOf(req.body.id) !== -1) {
-                    res.status(401).json("Vous êtes déjà ami !")
+                    res.status(401).json("Vous êtes déjà amis !")
                     return ;
                 }
 
@@ -32,10 +32,10 @@ class FriendController {
                         currentPangolin.friends.push(friend._id);
                         currentPangolin.save((err, pangolin) => {
                             if (err) {
-                                res.status(500).json("Il semblerait que votre amoitiée soit impossible");
+                                res.status(500).json("Il semblerait que votre amitié soit impossible");
                                 return ;
                             }
-                            res.json({success: friend.name + " et vous êtes maintenant ami !"});
+                            res.json({success: friend.name + " et vous êtes maintenant amis !"});
                         });
                     })
 

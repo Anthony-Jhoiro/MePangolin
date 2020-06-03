@@ -66,13 +66,13 @@ class AuthenticationController {
             .then(pangolin => {
                 // Check if the username exists
                 if (!pangolin) {
-                    res.status(401).json({ error: "Le nom d'utilisateur est incorrecte" });
+                    res.status(401).json({ error: "Le nom d'utilisateur est incorrect" });
                     return;
                 }
 
                 // Check the password
                 if (!bcrypt.compareSync(req.body.password, pangolin.password)) {
-                    res.status(401).json({ error: "Le mot de passe est incorrecte" });
+                    res.status(401).json({ error: "Le mot de passe est incorrect" });
                     return;
                 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NotificationService} from "../notification-service.service";
+import {NotificationService} from "../notification.service";
 
 export enum NotificationState {
   SUCCESS = "SUCCESS",
@@ -27,11 +27,18 @@ export class NotificationBubbleComponent implements OnInit {
     this.notificationService.setNotificationComponent(this);
   }
 
+  /**
+   * Show a notification for 2 seconds and reduce the opacity for
+   * @param message message to display
+   * @param state state of the notification (SUCCESS or ERROR)
+   */
   showNotification(message: string, state: NotificationState) {
     this.message = message;
     this.state = state;
     this.opacity = 1;
+    // CLear timeout and interval
     clearInterval(this.opacityInterval);
+    clearTimeout(this.opacityTimeout);
 
     this.opacityTimeout = setTimeout(() => {
       this.opacityInterval = setInterval(() => {

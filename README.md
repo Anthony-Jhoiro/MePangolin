@@ -35,7 +35,7 @@ Si vous avez la moindre question on remarque par rapport au projet n'hésitez pa
 Si 
 
 ## Lancement
-Il faut lancer la commande `npm start` dans les 2 repertoires.
+Il faut lancer la commande `npm start` dans les 2 dossiers.
 
 ## Images :
 - Icon : https://dribbble.com/shots/4831092#shot-description

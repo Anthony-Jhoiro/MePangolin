@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Pangolin} from "../models/Pangolin";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +25,13 @@ export class FriendsService {
    */
   removeFriend(pangolinId) {
     return this.http.delete(environment.API_ENDPOINT + '/friend/'+pangolinId);
+  }
+
+  /**
+   * Call the api to create a friend pangolin account
+   * @param pangolin
+   */
+  createFriend(pangolin: Pangolin): Observable<any> {
+    return this.http.post(environment.API_ENDPOINT+'/friend/create', pangolin);
   }
 }

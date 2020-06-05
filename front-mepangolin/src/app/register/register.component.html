@@ -1,3 +1,7 @@
+<a [routerLink]="['/pangolins']" class="return-btn">
+  <fa-icon [icon]="returnIcon"></fa-icon>
+</a>
+
 <div class="form">
   <form [formGroup]="registerForm">
     <h3>Créer un compte</h3>
@@ -36,7 +40,7 @@
       <input id="password_confirm" type="password" formControlName="password_confirm" required>
       <label for="password_confirm">Confirmez le mot de passe</label>
     </div>
-    <div class="link-container">
+    <div class="link-container" *ngIf="!createFriend">
       <a [routerLink]="['/login']" class="register-link">Vous êtes déjà venu ? Connectez vous ami pangolin !</a>
     </div>
     <button *ngIf="registerForm.valid && registerForm.value.password === registerForm.value.password_confirm" (click)="submitRegisterForm()">Envoyer</button>

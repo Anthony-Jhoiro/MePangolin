@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'pangolins', component: PangolinsComponent, canActivate: [AuthGuard] },
   { path: 'me', component: MypageComponent, canActivate: [AuthGuard] },
+  { path: 'create', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/pangolins' }
   ];
 

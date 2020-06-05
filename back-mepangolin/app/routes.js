@@ -18,6 +18,7 @@ const loadRoutes = app => {
 
     // Friends
     app.use('/friend', AuthenticationMiddleware);
+    app.post('/friend/create', friendController.createFriend);
     app.post('/friend', friendController.addFriend);
     app.delete('/friend/:id', friendController.removeFriend);
 

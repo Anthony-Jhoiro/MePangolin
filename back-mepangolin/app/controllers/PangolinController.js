@@ -1,4 +1,5 @@
 import Pangolin from "../schemas/Pangolin.js";
+import bcrypt from "bcryptjs";
 
 class PangolinController {
 
@@ -24,7 +25,7 @@ class PangolinController {
                         },
                         (onlyFriends === '1')? {_id: {$in: currentPangolin.friends}}:{}
                     ],
-                name: {$regex: searchItem}
+                name: {$regex: searchItem, $options: 'i'}
                 };
                 Pangolin.find(filters, {password: 0}).lean()
                     .then(pangolins => {
@@ -81,6 +82,49 @@ class PangolinController {
             });
 
         return res;
+    }
+
+
+    /**
+     *
+     * @param data
+     * @param successCallback
+     * @param errorCallback
+     * @return {*}
+     */
+    createPangolin(data, successCallback, errorCallback) {
+        // Check Unique Name
+        Pangolin.findOne({name: data.name})
+            .then(optionalPangolin => {
+                // If the pangolin name is already taken
+                if (optionalPangolin) {
+                    errorCallback(400, "Le nom d'utilisateur est déjà utilisé");
+                    return;
+                }
+
+                // Create the pangolin
+                const pangolin = new Pangolin({
+                    name: data.name,
+                    password: bcrypt.hashSync(data.password, 8),
+                    age: data.age,
+                    family: data.family,
+                    race: data.race,
+                    food: data.food,
+                    friends: []
+                });
+                // Save it in the database
+                pangolin.save((err, pangolin) => {
+                    if (err) {
+                        errorCallback(500, err);
+                        return;
+                    }
+
+                    // Create token (valid for 1h)
+                    successCallback(pangolin);
+
+
+                });
+            });
     }
 
 }

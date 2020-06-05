@@ -35,4 +35,6 @@ export class PangolinsService {
   updatePangolin(pangolin: Pangolin) {
     return this.http.patch<Pangolin>(environment.API_ENDPOINT + '/pangolin', pangolin);
   }
+
+
 }

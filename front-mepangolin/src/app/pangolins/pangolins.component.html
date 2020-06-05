@@ -11,6 +11,9 @@
       <fa-icon [icon]="searchIcon"></fa-icon>
       <input id="search-bar" type="text" placeholder="Rechercher un copain" [(ngModel)]="searchItem" (ngModelChange)="onSearch()">
     </div>
+    <a class="create-link" [routerLink]="['/create']">
+      Créer un pangolin
+    </a>
   </div>
   <div class="right-side">
     <a class="nav-btn" [routerLink]="['/me']">

@@ -91,7 +91,7 @@ class FriendController {
                             res.status(500).json("Il semblerait que votre amitié soit impossible");
                             return;
                         }
-                        res.json({success: 'Le compte' + friend.name + " a bien été créé et vous êtes maintenant ami !"});
+                        res.json({success: "Le compte " + friend.name + " a bien été créé et vous êtes maintenant ami !"});
                     });
                 });
         }, (code, message) => {

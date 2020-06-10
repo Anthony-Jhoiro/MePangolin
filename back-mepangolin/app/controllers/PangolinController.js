@@ -1,5 +1,5 @@
-import Pangolin from "../schemas/Pangolin.js";
-import bcrypt from "bcryptjs";
+const Pangolin = require("../schemas/Pangolin.js");
+const bcrypt = require("bcryptjs");
 
 class PangolinController {
 
@@ -131,4 +131,5 @@ class PangolinController {
 
 const pangolinController = new PangolinController();
 
-export default pangolinController;
+// export default pangolinController;
+module.exports = pangolinController

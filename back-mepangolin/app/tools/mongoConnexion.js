@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import {DATABASE_NAME, DATABASE_URL} from "../../environment.js";
+const mongoose = require('mongoose');
+const environment = require("../../environment.js");
 
 
 // Connection to mongodb database
-mongoose.connect(DATABASE_URL + DATABASE_NAME, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(environment.DATABASE_URL + environment.DATABASE_NAME, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 /**
  * to handle database events
  */
@@ -20,4 +20,4 @@ const Schema = mongoose.Schema;
  */
 const makeModel = mongoose.model; //
 
-export { Schema, makeModel, db };
+module.exports = { Schema, makeModel, db };

@@ -1,6 +1,6 @@
-import {Schema, makeModel} from "../tools/mongoConnexion.js";
+const db = require("../tools/mongoConnexion.js");
 
-const pangolinSchema = new Schema({
+const pangolinSchema = new db.Schema({
     name: String,
     password: String,
     salt: String,
@@ -9,13 +9,13 @@ const pangolinSchema = new Schema({
     race: String,
     food: [String],
     friends: [{
-        type: Schema.Types.ObjectId,
+        type: db.Schema.Types.ObjectId,
         ref: 'Pangolin'
     }]
 });
 
-const Pangolin = makeModel('Pangolin', pangolinSchema, 'pangolins');
+const Pangolin = db.makeModel('Pangolin', pangolinSchema, 'pangolins');
 
-export default Pangolin;
+module.exports = Pangolin;
 
 

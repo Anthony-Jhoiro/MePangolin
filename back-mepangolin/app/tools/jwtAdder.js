@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import {JWT_SECRET} from "../../environment.js";
+const jwt = require("jsonwebtoken");
+const environment = require("../../environment.js");
 
 /**
  * Add a jwt token to the response
@@ -7,8 +7,8 @@ import {JWT_SECRET} from "../../environment.js";
  * @param data
  */
 const addJwtToken = (res, data) =>{
-    const token = jwt.sign(data, JWT_SECRET, {expiresIn: 3600});
+    const token = jwt.sign(data, environment.JWT_SECRET, {expiresIn: 3600});
     res.set('_token', token);
 } ;
 
-export default addJwtToken;
+module.exports = addJwtToken;

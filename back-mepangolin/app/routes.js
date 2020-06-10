@@ -1,7 +1,7 @@
-import authenticationController from "./controllers/AuthenticationController.js";
-import pangolinController from "./controllers/PangolinController.js";
-import friendController from "./controllers/FriendController.js";
-import AuthenticationMiddleware from "./middlewares/AuthenticationMiddleware.js";
+const authenticationController = require("./controllers/AuthenticationController.js");
+const pangolinController = require("./controllers/PangolinController.js");
+const friendController = require("./controllers/FriendController.js");
+const AuthenticationMiddleware = require("./middlewares/AuthenticationMiddleware.js");
 
 const loadRoutes = app => {
     // Default route
@@ -24,4 +24,4 @@ const loadRoutes = app => {
 
 };
 
-export default loadRoutes;
+module.exports =  loadRoutes;

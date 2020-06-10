@@ -1,9 +1,9 @@
-import express from 'express';
-import {db} from "./app/tools/mongoConnexion.js";
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import {FRONT_URL, PORT} from "./environment.js";
-import loadRoutes from "./app/routes.js";
+const express = require( 'express');
+const db = require( "./app/tools/mongoConnexion.js");
+const bodyParser = require( 'body-parser');
+const cors = require( 'cors');
+const environment = require( "./environment.js");
+const loadRoutes = require( "./app/routes.js");
 
 const app = express();
 
@@ -11,7 +11,7 @@ const app = express();
  * Configure CORS
  */
 app.use(cors({
-    origin: FRONT_URL,
+    origin: environment.FRONT_URL,
     exposedHeaders: ['_token']
 }));
 
@@ -29,16 +29,16 @@ loadRoutes(app);
 /**
  * Database events : on error
  */
-db.on('error', function callback () {
+db.db.on('error', () => {
     console.error("❌ Connection error");
 });
 
 /**
  * Database events : on open
  */
-db.once('open', function callback () {
+db.db.once('open', () => {
     console.log("Connected to the Mongodb database")
     // Start listening on the port
-    const port = process.env.PORT | PORT;
+    const port = process.env.PORT | environment.PORT;
     app.listen(port, () => console.log("🌐 Listening on port " + port));
 });

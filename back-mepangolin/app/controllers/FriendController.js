@@ -1,5 +1,5 @@
-import Pangolin from "../schemas/Pangolin.js";
-import pangolinController from "./PangolinController.js";
+const Pangolin = require("../schemas/Pangolin.js");
+const pangolinController = require("./PangolinController.js");
 
 class FriendController {
 
@@ -61,7 +61,6 @@ class FriendController {
                     return;
                 }
                 currentPangolin.friends.splice(oldFriendIndex, 1);
-                console.log(currentPangolin);
                 currentPangolin.save((err, pangolin) => {
                     if (err) {
                         res.status(500).json({error: "Il semblerait que votre amitié soit plus forte que le code"});
@@ -104,4 +103,5 @@ class FriendController {
 
 const friendController = new FriendController();
 
-export default friendController;
+// export default friendController;
+module.exports = friendController;

@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
-import {JWT_SECRET} from "../../environment.js";
-import addJwtToken from "../tools/jwtAdder.js";
+const jwt = require('jsonwebtoken');
+const environment = require("../../environment.js");
+const addJwtToken =  require("../tools/jwtAdder.js");
 
 /**
  * Middleware to control that the pangolin is connected
@@ -16,7 +16,7 @@ const AuthenticationMiddleware = (req, res, next) => {
     if (!token) return res.status(403).json({error: "Vous n'êtes pas connecté"});
 
     // Verify the token and add a new one
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, environment.JWT_SECRET, (err, decoded) => {
         if (err) return res.status(401).json({error: "Vous n'êtes pas autorisé à acceder à cette ressource"});
 
         req.userId = decoded.id;
@@ -25,4 +25,5 @@ const AuthenticationMiddleware = (req, res, next) => {
     })
 };
 
-export default AuthenticationMiddleware;
+module.exports = AuthenticationMiddleware
+// export default AuthenticationMiddleware;

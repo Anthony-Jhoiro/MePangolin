@@ -1,7 +1,7 @@
-import Pangolin from "../schemas/Pangolin.js";
-import bcrypt from 'bcryptjs';
-import addJwtToken from "../tools/jwtAdder.js";
-import pangolinController from "./PangolinController.js";
+const Pangolin = require("../schemas/Pangolin.js");
+const bcrypt = require('bcryptjs');
+const addJwtToken = require("../tools/jwtAdder.js");
+const pangolinController = require("./PangolinController.js");
 
 class AuthenticationController {
 
@@ -63,4 +63,5 @@ class AuthenticationController {
 
 const authenticationController = new AuthenticationController();
 
-export default authenticationController;
+module.exports = authenticationController
+// export default authenticationController;
